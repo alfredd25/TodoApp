@@ -8,7 +8,9 @@ class TodoApp:
         self.root.title("To-Do List")
         self.root.geometry("400x400")
 
-        self.tasks = []
+        self.file_path = "tasks.txt"
+
+        self.tasks = self.load_tasks()
 
         self.setup_ui()
 
@@ -34,16 +36,18 @@ class TodoApp:
             self.tasks.append(task)
             self.update_task_list()
             self.task_entry.delete(0, tk.END)
+            self.save_task()
         else:
             messagebox.showwarning("Warning", "Please enter a task.")
 
     def edit_task(self):
         try:
-            index = self.task_listbox.curselection()[0];
+            index = self.task_listbox.curselection()[0]
             selected_task = self.tasks[index]
             self.task_entry.delete(0, tk.END)
             self.task_entry.insert(0, selected_task)
             self.delete_task()
+            self.save_task()
 
         except IndexError:
             messagebox.showwarning("Warning", "Please select a task to edit")
@@ -53,6 +57,7 @@ class TodoApp:
             index = self.task_listbox.curselection()[0]
             self.tasks.pop(index)
             self.update_task_list()
+            self.save_task()
         except IndexError:
             messagebox.showwarning("Warning", "Please select a task to delete")
 
@@ -60,3 +65,17 @@ class TodoApp:
         self.task_listbox.delete(0, tk.END)
         for task in self.tasks:
             self.task_listbox.insert(tk.END, task)
+
+    def load_tasks(self):
+        try:
+            with open(self.file_path, "r") as file:
+                tasks =[line.strip() for line in file.readlines()]
+            return tasks
+
+        except FileNotFoundError:
+            return[]
+
+    def save_task(self):
+        with open(self.file_path, "w") as file:
+            for task in self.tasks:
+                file.write(task + "\n")
