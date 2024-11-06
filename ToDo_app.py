@@ -14,6 +14,8 @@ class TodoApp:
 
         self.setup_ui()
 
+        self.update_task_list()
+
     def setup_ui(self):
         self.task_entry = tk.Entry(self.root, width=30)
         self.task_entry.pack(pady=10)
