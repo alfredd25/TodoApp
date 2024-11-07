@@ -6,7 +6,7 @@ class TodoApp:
     def __init__(self, root):
         self.root = root
         self.root.title("To-Do List")
-        self.root.geometry("400x400")
+        self.root.geometry("400x500")
 
         self.file_path = "tasks.txt"
 
@@ -17,11 +17,17 @@ class TodoApp:
         self.update_task_list()
 
     def setup_ui(self):
+        add_task_label = tk.Label(self.root, text="Add Task", font=("Arial", 14, "bold"))
+        add_task_label.pack(pady=(10, 0))
+
         self.task_entry = tk.Entry(self.root, width=30)
         self.task_entry.pack(pady=10)
 
         self.add_task_button = tk.Button(self.root, text="Add Task", command=self.add_task)
         self.add_task_button.pack(pady=5)
+
+        task_list_label = tk.Label(self.root, text="Task List", font=("Arial", 14, "bold"))
+        task_list_label.pack(pady=(20, 0))
 
         self.task_listbox = tk.Listbox(self.root, width=50, height=10)
         self.task_listbox.pack(pady=10)
@@ -75,7 +81,7 @@ class TodoApp:
             return tasks
 
         except FileNotFoundError:
-            return[]
+            return []
 
     def save_task(self):
         with open(self.file_path, "w") as file:
