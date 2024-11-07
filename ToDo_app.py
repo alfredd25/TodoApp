@@ -17,26 +17,31 @@ class TodoApp:
         self.update_task_list()
 
     def setup_ui(self):
-        add_task_label = tk.Label(self.root, text="Add Task", font=("Arial", 14, "bold"))
+        self.root.configure(bg="#f5f5dc")
+
+        add_task_label = tk.Label(self.root, text="Add Task", font=("Arial", 14, "bold"), bg="#f5f5dc")
         add_task_label.pack(pady=(10, 0))
 
-        self.task_entry = tk.Entry(self.root, width=30)
+        self.task_entry = tk.Entry(self.root, width=30, bg="#f0f0e4")
         self.task_entry.pack(pady=10)
 
-        self.add_task_button = tk.Button(self.root, text="Add Task", command=self.add_task)
+        self.add_task_button = tk.Button(self.root, text="Add Task", command=self.add_task, bg="#EADDCA", fg="#000000")
         self.add_task_button.pack(pady=5)
 
-        task_list_label = tk.Label(self.root, text="Task List", font=("Arial", 14, "bold"))
+        task_list_label = tk.Label(self.root, text="Task List", font=("Arial", 14, "bold"), bg="#f5f5dc")
         task_list_label.pack(pady=(20, 0))
 
-        self.task_listbox = tk.Listbox(self.root, width=50, height=10)
+        self.task_listbox = tk.Listbox(self.root, width=50, height=10, bg="#f0f0e4")
         self.task_listbox.pack(pady=10)
 
-        self.edit_tasks = tk.Button(self.root, text="Edit Task", command=self.edit_task)
+        self.edit_tasks = tk.Button(self.root, text="Edit Task", command=self.edit_task,bg="#EADDCA", fg="#000000")
         self.edit_tasks.pack(pady=5)
 
-        self.delete_tasks = tk.Button(self.root, text="Delete Task", command=self.delete_task)
+        self.delete_tasks = tk.Button(self.root, text="Delete Task", command=self.delete_task, bg="#EADDCA", fg="#000000")
         self.delete_tasks.pack(pady=5)
+
+        self.task_frame = tk.Frame(self.root, bg="#f5f5dc")
+        self.task_frame.pack(pady=10)
 
     def add_task(self):
         task = self.task_entry.get()
