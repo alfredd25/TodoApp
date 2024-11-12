@@ -7,7 +7,7 @@ A simple, intuitive To-Do List application built with Python and Tkinter, allowi
 ## 🚀 Features
 
 - **Add, Edit, and Delete Tasks**: Easily manage your tasks by adding new ones, editing existing ones, and deleting completed or unwanted tasks.
-- **Intuitive UI**: A user-friendly interface with clear section headings and a soft, pale color scheme with dark mode too.
+- **Intuitive UI**: A user-friendly interface with clear section headings and a soft, pale color scheme with dark mode.
 - **Persistent Storage**: Tasks are saved locally and loaded on app startup, so you can pick up right where you left off.
 
 ---
